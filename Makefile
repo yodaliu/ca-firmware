@@ -1,7 +1,7 @@
 SHELL		= /bin/bash
 
-#TOOL_PREFIX = aarch64-linux-gnu-
-TOOL_PREFIX = aarch64-elf-
+TOOL_PREFIX = aarch64-linux-gnu-
+#TOOL_PREFIX = aarch64-elf-
 
 AS			= $(TOOL_PREFIX)as
 LD			= $(TOOL_PREFIX)ld

@@ -13,8 +13,11 @@
 #define SCR_SMD			BIT(7)
 #define SCR_RES1_5		BIT(5)
 #define SCR_RES1_4		BIT(4)
+#define SCR_EA			BIT(3)
+#define SCR_FIQ			BIT(2)
+#define SCR_IRQ			BIT(1)
 #define SCR_NS			BIT(0)
-#define SCR_VAL			(SCR_RW | SCR_HCE | SCR_SMD | SCR_RES1_5 | SCR_RES1_4 | SCR_NS)
+#define SCR_VAL			(SCR_RW | SCR_HCE | SCR_SMD | SCR_RES1_5 | SCR_RES1_4 | SCR_NS | SCR_EA | SCR_FIQ | SCR_IRQ)
 
 #define CPUECTLR_EL1		S3_1_C15_C2_1
 #define CPUECTLR_EL1_SMPEN	BIT(6)
@@ -79,8 +82,8 @@ _start:
 	 * Set up SCTLR_EL2
 	 * All set bits below are res1. LE, no WXN/I/SA/C/A/M
 	 */
-	ldr x0, =0x30c50830
-	msr SCTLR_EL2, x0
+	//ldr x0, =0x30c50830
+	//msr SCTLR_EL2, x0
 
 	/* Switch to EL2 */
 	//mov x0, #SPSR_EL3_VAL
