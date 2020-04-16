@@ -1,4 +1,3 @@
-#include <sys/mm.h>
 #include <sys/utils.h>
 
 #define LOCAL_CONTROL	0xff800000
@@ -36,6 +35,16 @@
 #define IT_NR			0x8	// Number of interrupt enable registers (256 total irqs)
 #define GICD_CTRLR		0x0
 #define GICD_IGROUPR	0x80
+
+#define PAGE_SHIFT      12
+#define TABLE_SHIFT     9
+#define SECTION_SHIFT   (PAGE_SHIFT + TABLE_SHIFT)
+
+#define PAGE_SIZE       (1 << PAGE_SHIFT)
+#define SECTION_SIZE    (1 << SECTION_SHIFT)
+
+#define LOW_MEMORY      (2 * SECTION_SIZE)
+
 
 .section ".text.boot"
 
