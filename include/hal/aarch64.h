@@ -62,112 +62,112 @@
 
 #ifndef __ASSEMBLY__
 uint32_t raw_read_current_el(
-	void
+    void
 );
 
 uint32_t get_current_el(
-	void
+    void
 );
 
 uint32_t raw_read_daif(
-	void
+    void
 );
 
 void raw_write_daif(
-	uint32_t daif
+    uint32_t daif
 );
 
 void enable_debug_exceptions(
-	void
+    void
 );
 
 void enable_serror_exceptions(
-	void
+    void
 );
 
 void enable_irq(
-	void
+    void
 );
 
 void enable_fiq(
-	void
+    void
 );
 
 void disable_debug_exceptions(
-	void
+    void
 );
 
 void disable_serror_exceptions(
-	void
+    void
 );
 
 void disable_irq(
-	void
+    void
 );
 
 void disable_fiq(
-	void
+    void
 );
 
-uint32_t raw_read_spsr_el1(
-	void
+uint32_t raw_read_spsr_el3(
+    void
 );
 
-void raw_write_spsr_el1(
-	uint32_t spsr_el1
+void raw_write_spsr_el3(
+    uint32_t spsr_el3
 );
 
 uint32_t raw_read_isr_el1(
-	void
+    void
 );
 
-uint64_t raw_read_rvbar_el1(
-	void
+uint64_t raw_read_rvbar_el3(
+    void
 );
 
-void raw_write_rvbar_el1(
-	uint64_t rvbar_el1
+void raw_write_rvbar_el3(
+    uint64_t rvbar_el3
 );
 
-uint64_t raw_read_vbar_el1(
-	void
+uint64_t raw_read_vbar_el3(
+    void
 );
 
-void raw_write_vbar_el1(
-	uint64_t vbar_el1
+void raw_write_vbar_el3(
+    uint64_t vbar_el3
 );
 
 
 uint32_t raw_read_cntv_ctl(
-	void
+    void
 );
 
 void disable_cntv(
-	void
+    void
 );
 
 void enable_cntv(
-	void
+    void
 );
 
 uint32_t raw_read_cntfrq_el0(
-	void
+    void
 );
 
 void raw_write_cntfrq_el0(
-	uint32_t cntfrq_el0
+    uint32_t cntfrq_el0
 );
 
 uint64_t raw_read_cntvct_el0(
-	void
+    void
 );
 
 uint64_t raw_read_cntv_cval_el0(
-	void
+    void
 );
 
 void raw_write_cntv_cval_el0(
-	uint64_t cntv_cval_el0
+    uint64_t cntv_cval_el0
 );
 
 #endif //#ifndef __ASSEMBLY__

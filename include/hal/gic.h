@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include "address.h"
 
-#define GICD_BASE   		(ARM_LOCAL_BASE + 41000)
-#define GICC_BASE   		(ARM_LOCAL_BASE + 42000)
+#define GICD_BASE           (ARM_LOCAL_BASE + 41000)
+#define GICC_BASE           (ARM_LOCAL_BASE + 42000)
 
 #define GICD_CTLR           (GICD_BASE + 0x000)
 #define GICD_TYPER          (GICD_BASE + 0x004)
@@ -64,27 +64,27 @@
 #define GICC_DIR        (GICC_BASE + 0x1000)
 
 /* Register bits */
-#define GICD_CTL_ENABLE 		0x1
+#define GICD_CTL_ENABLE         0x1
 
-#define GICD_TYPE_LINES 		0x01f
-#define GICD_TYPE_CPUS_SHIFT 	5
-#define GICD_TYPE_CPUS  		0x0e0
-#define GICD_TYPE_SEC   		0x400
+#define GICD_TYPE_LINES         0x01f
+#define GICD_TYPE_CPUS_SHIFT    5
+#define GICD_TYPE_CPUS          0x0e0
+#define GICD_TYPE_SEC           0x400
 
-#define GICC_CTL_ENABLE 		0x1
-#define GICC_CTL_EOI    		(0x1 << 9)
+#define GICC_CTL_ENABLE         0x1
+#define GICC_CTL_EOI            (0x1 << 9)
 
-#define GICC_IA_IRQ       		0x03ff
-#define GICC_IA_CPU_MASK  		0x1c00
-#define GICC_IA_CPU_SHIFT 		10
+#define GICC_IA_IRQ             0x03ff
+#define GICC_IA_CPU_MASK        0x1c00
+#define GICC_IA_CPU_SHIFT       10
 
 /* SPI */
-#define GIC_ARM_CORE0_PMU			48
-#define GIC_ARM_CORE1_PMU			49
-#define GIC_ARM_CORE2_PMU			50
-#define GIC_ARM_CORE3_PMU			51
-#define GIC_ARM_LOCAL_IRQ_AXI_ERR	52
-#define GIC_ARM_LOCAL_IRQ_TIMER		53
+#define GIC_ARM_CORE0_PMU           48
+#define GIC_ARM_CORE1_PMU           49
+#define GIC_ARM_CORE2_PMU           50
+#define GIC_ARM_CORE3_PMU           51
+#define GIC_ARM_LOCAL_IRQ_AXI_ERR   52
+#define GIC_ARM_LOCAL_IRQ_TIMER     53
 #define GIC_ARMC_IRQ_TIMER          64
 #define GIC_ARMC_IRQ_MAILBOX        65
 #define GIC_ARMC_IRQ_DOORBELL0      66
@@ -131,32 +131,32 @@
 #ifndef __ASSEMBLY__
 
 void disabe_irq_n(
-	uint32_t irq
+    uint32_t irq
 );
 
 void enable_irq_n(
-	uint32_t irq
+    uint32_t irq
 );
 
 void end_irq_n(
-	uint32_t irq
+    uint32_t irq
 );
 
 uint32_t probe_irq_n(
-	uint32_t irq
+    uint32_t irq
 );
 
 void set_irq_prio(
-	uint32_t irq,
-	uint8_t prio
+    uint32_t irq,
+    uint8_t prio
 );
 
 uint8_t get_irq_prio(
-	uint32_t irq
+    uint32_t irq
 );
 
-void init_interrupt(
-	void
+void init_gic(
+    void
 );
 
 #endif //#ifndef __ASSEMBLY__

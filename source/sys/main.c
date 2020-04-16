@@ -14,18 +14,12 @@ void main(void)
     uint64_t ticks, current_cnt;
 
     uart_init();
-    //init_interrupt();
+    init_gic();
 
-    printf("timer_test\n");
+    printf("main\n");
 
-    val = raw_read_current_el();
+    val = get_current_el();
     printf("CurrentEL = %x\n", val);
-
-    //val = raw_read_rvbar_el1();
-    //printf("RVBAR_EL1 = %x\n", val);
-
-    //val = raw_read_vbar_el1();
-    //printf("VBAR_EL1 = %x\n", val);
 
     val = raw_read_daif();
     printf("DAIF = %x\n", val);

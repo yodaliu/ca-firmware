@@ -148,7 +148,7 @@ static void init_gicc(void)
 
 }
 
-void init_interrupt(void)
+void init_gic(void)
 {
     init_gicd();
     init_gicc();

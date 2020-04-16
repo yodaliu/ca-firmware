@@ -87,20 +87,20 @@ void disable_fiq(void)
     __asm__ __volatile__("msr DAIFSet, %0\n\t" : : "i"(DAIF_FIQ_BIT)  : "memory");
 }
 
-/* SPSR_EL1, Saved Program Status Register (EL1)
-    Holds the saved processor state when an exception is taken to EL1.
+/* SPSR_EL3, Saved Program Status Register (EL3)
+    Holds the saved processor state when an exception is taken to EL3.
 */
-uint32_t raw_read_spsr_el1(void)
+uint32_t raw_read_spsr_el3(void)
 {
-    uint32_t spsr_el1;
+    uint32_t spsr_el3;
 
-    __asm__ __volatile__("mrs %0, SPSR_EL1\n\t" : "=r"(spsr_el1) :  : "memory");
-    return spsr_el1;
+    __asm__ __volatile__("mrs %0, SPSR_EL1\n\t" : "=r"(spsr_el3) :  : "memory");
+    return spsr_el3;
 }
 
-void raw_write_spsr_el1(uint32_t spsr_el1)
+void raw_write_spsr_el3(uint32_t spsr_el3)
 {
-    __asm__ __volatile__("msr SPSR_EL1, %0\n\t" : : "r"(spsr_el1) : "memory");
+    __asm__ __volatile__("msr SPSR_EL3, %0\n\t" : : "r"(spsr_el3) : "memory");
 }
 
 /*
@@ -116,38 +116,37 @@ uint32_t raw_read_isr_el1(void)
 }
 
 /*
-RVBAR_EL1, Reset Vector Base Address Register (if EL2 and EL3 not implemented)
-    If EL1 is the highest exception level implemented, contains the
-    IMPLEMENTATION DEFINED address that execution starts from after reset when
+RVBAR_EL3, Reset Vector Base Address Register
+    contains the IMPLEMENTATION DEFINED address that execution starts from after reset when
     executing in AArch64 state.
 */
-uint64_t raw_read_rvbar_el1(void)
+uint64_t raw_read_rvbar_el3(void)
 {
-    uint64_t rvbar_el1;
+    uint64_t rvbar_el3;
 
-    __asm__ __volatile__("mrs %0, RVBAR_EL1\n\t" : "=r"(rvbar_el1) :  : "memory");
-    return rvbar_el1;
+    __asm__ __volatile__("mrs %0, RVBAR_EL3\n\t" : "=r"(rvbar_el3) :  : "memory");
+    return rvbar_el3;
 }
 
-void raw_write_rvbar_el1(uint64_t rvbar_el1)
+void raw_write_rvbar_el3(uint64_t rvbar_el3)
 {
-    __asm__ __volatile__("msr RVBAR_EL1, %0\n\t" : : "r"(rvbar_el1) : "memory");
+    __asm__ __volatile__("msr RVBAR_EL3, %0\n\t" : : "r"(rvbar_el3) : "memory");
 }
 
-/* VBAR_EL1, Vector Base Address Register (EL1)
+/* VBAR_EL3, Vector Base Address Register (EL3)
     Holds the exception base address for any exception that is taken to EL1.
 */
-uint64_t raw_read_vbar_el1(void)
+uint64_t raw_read_vbar_el3(void)
 {
-    uint64_t vbar_el1;
+    uint64_t vbar_el3;
 
-    __asm__ __volatile__("mrs %0, VBAR_EL1\n\t" : "=r"(vbar_el1) :  : "memory");
-    return vbar_el1;
+    __asm__ __volatile__("mrs %0, VBAR_EL3\n\t" : "=r"(vbar_el3) :  : "memory");
+    return vbar_el3;
 }
 
-void raw_write_vbar_el1(uint64_t vbar_el1)
+void raw_write_vbar_el3(uint64_t vbar_el3)
 {
-    __asm__ __volatile__("msr VBAR_EL1, %0\n\t" : : "r"(vbar_el1) : "memory");
+    __asm__ __volatile__("msr VBAR_EL3, %0\n\t" : : "r"(vbar_el3) : "memory");
 }
 
 /* CNTV_CTL_EL0, Counter-timer Virtual Timer Control register

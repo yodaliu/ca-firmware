@@ -87,6 +87,10 @@ _start:
 	mov x0, #CPUECTLR_EL1_SMPEN
 	msr CPUECTLR_EL1, x0
 
+	adr	x1, vectors
+	msr	vbar_el3, x1
+	isb
+
 	/*
 	 * Set up SCTLR_EL2
 	 * All set bits below are res1. LE, no WXN/I/SA/C/A/M
@@ -100,7 +104,7 @@ _start:
 	//adr x0, in_el2
 	//msr elr_el3, x0
 	//eret
-in_el2:
+//in_el2:
 	mrs x6, MPIDR_EL1
 	and x6, x6, #0x3
 	cbz x6, primary_cpu
