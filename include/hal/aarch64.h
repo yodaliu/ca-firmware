@@ -170,5 +170,9 @@ void raw_write_cntv_cval_el0(
     uint64_t cntv_cval_el0
 );
 
+uint32_t raw_read_mpidr_el1(
+    void
+);
+
 #endif //#ifndef __ASSEMBLY__
 #endif //#ifndef _AARCH64_H_

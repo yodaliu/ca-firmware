@@ -49,7 +49,13 @@ void main(void)
     printf("Enable the timer, CNTV_CTL_EL0 = %x\n", val);
 
     // Enable IRQ
+    set_arm_timer_irq_route();
     enable_irq();
+    enable_irq_n(GIC_ARM_IRQ_V_TIMER);
     val = raw_read_daif();
     printf("Enable IRQ, DAIF = %x\n", val);
+
+    while (1) {
+
+    }
 }

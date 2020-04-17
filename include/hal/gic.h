@@ -11,33 +11,32 @@
 #define GICD_TYPER          (GICD_BASE + 0x004)
 #define GICD_IIDR           (GICD_BASE + 0x008)
 #define GICD_IGROUPR        (GICD_BASE + 0x080)
-#define GICD_IGROUPRN       (GICD_BASE + 0x0FC)
+#define GICD_IGROUPRN       (GICD_BASE + 0x09C)
 #define GICD_ISENABLER      (GICD_BASE + 0x100)
-#define GICD_ISENABLERN     (GICD_BASE + 0x17C)
+#define GICD_ISENABLERN     (GICD_BASE + 0x11C)
 #define GICD_ICENABLER      (GICD_BASE + 0x180)
-#define GICD_ICENABLERN     (GICD_BASE + 0x1FC)
+#define GICD_ICENABLERN     (GICD_BASE + 0x19C)
 #define GICD_ISPENDR        (GICD_BASE + 0x200)
-#define GICD_ISPENDRN       (GICD_BASE + 0x27C)
+#define GICD_ISPENDRN       (GICD_BASE + 0x21C)
 #define GICD_ICPENDR        (GICD_BASE + 0x280)
-#define GICD_ICPENDRN       (GICD_BASE + 0x2FC)
+#define GICD_ICPENDRN       (GICD_BASE + 0x29C)
 #define GICD_ISACTIVER      (GICD_BASE + 0x300)
-#define GICD_ISACTIVERN     (GICD_BASE + 0x37C)
+#define GICD_ISACTIVERN     (GICD_BASE + 0x31C)
 #define GICD_ICACTIVER      (GICD_BASE + 0x380)
-#define GICD_ICACTIVERN     (GICD_BASE + 0x3FC)
+#define GICD_ICACTIVERN     (GICD_BASE + 0x39C)
 #define GICD_IPRIORITYR     (GICD_BASE + 0x400)
-#define GICD_IPRIORITYRN    (GICD_BASE + 0x7F8)
+#define GICD_IPRIORITYRN    (GICD_BASE + 0x4FC)
 #define GICD_ITARGETSR      (GICD_BASE + 0x800)
-#define GICD_ITARGETSRN     (GICD_BASE + 0xBF8)
+#define GICD_ITARGETSRN     (GICD_BASE + 0x8FC)
 #define GICD_ICFGR          (GICD_BASE + 0xC00)
-#define GICD_ICFGRN         (GICD_BASE + 0xCFC)
+#define GICD_ICFGRN         (GICD_BASE + 0xC3C)
 #define GICD_NSACR          (GICD_BASE + 0xE00)
-#define GICD_NSACRN         (GICD_BASE + 0xEFC)
+#define GICD_NSACRN         (GICD_BASE + 0xE3C)
 #define GICD_SGIR           (GICD_BASE + 0xF00)
 #define GICD_CPENDSGIR      (GICD_BASE + 0xF10)
 #define GICD_CPENDSGIRN     (GICD_BASE + 0xF1C)
 #define GICD_SPENDSGIR      (GICD_BASE + 0xF20)
 #define GICD_SPENDSGIRN     (GICD_BASE + 0xF2C)
-#define GICD_ICPIDR2        (GICD_BASE + 0xFE8)
 
 #define GICD_SGI_TARGET_LIST_SHIFT   (24)
 #define GICD_SGI_TARGET_LIST_MASK    (0x3UL << GICD_SGI_TARGET_LIST_SHIFT)
@@ -78,11 +77,19 @@
 #define GICC_IA_CPU_MASK        0x1c00
 #define GICC_IA_CPU_SHIFT       10
 
+/* PPI */
+#define GIC_ARM_IRQ_HP_TIMER        26
+#define GIC_ARM_IRQ_V_TIMER         27
+#define GIC_ARM_IRQ_LEGACY_FIQ      28
+#define GIC_ARM_IRQ_PS_TIMER        29
+#define GIC_ARM_IRQ_PNS_TIMER       30
+#define GIC_ARM_IRQ_LEGACY_IRQ      31
+
 /* SPI */
-#define GIC_ARM_CORE0_PMU           48
-#define GIC_ARM_CORE1_PMU           49
-#define GIC_ARM_CORE2_PMU           50
-#define GIC_ARM_CORE3_PMU           51
+#define GIC_ARM_LOCAL_IRQ_CORE0_PMU 48
+#define GIC_ARM_LOCAL_IRQ_CORE1_PMU 49
+#define GIC_ARM_LOCAL_IRQ_CORE2_PMU 50
+#define GIC_ARM_LOCAL_IRQ_CORE3_PMU 51
 #define GIC_ARM_LOCAL_IRQ_AXI_ERR   52
 #define GIC_ARM_LOCAL_IRQ_TIMER     53
 #define GIC_ARMC_IRQ_TIMER          64

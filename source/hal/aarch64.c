@@ -224,3 +224,11 @@ void raw_write_cntv_cval_el0(uint64_t cntv_cval_el0)
 {
     __asm__ __volatile__("msr CNTV_CVAL_EL0, %0\n\t" : : "r"(cntv_cval_el0) : "memory");
 }
+
+uint32_t raw_read_mpidr_el1(void)
+{
+    uint64_t mpidr_el1;
+
+    __asm__ __volatile__("mrs %0, MPIDR_EL1\n\t" : "=r"(mpidr_el1) : : "memory");
+    return mpidr_el1;
+}

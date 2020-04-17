@@ -78,48 +78,41 @@ static void init_gicd(void)
 
     // Disable all interrupts
     addr = GICD_ICENABLER;
-    while (addr < GICD_ICENABLERN) {
+    while (addr <= GICD_ICENABLERN) {
         put32(addr, 0xFFFFFFFF);
         addr += 4;
     }
 
     // Clear all pending interrupts
     addr = GICD_ICPENDR;
-    while (addr < GICD_ICPENDRN) {
+    while (addr <= GICD_ICPENDRN) {
         put32(addr, 0xFFFFFFFF);
         addr += 4;
     }
 
     // Set all interrupt to the lowest prio.
     addr = GICD_IPRIORITYR;
-    while (addr < GICD_IPRIORITYRN) {
+    while (addr <= GICD_IPRIORITYRN) {
         put32(addr, 0xFFFFFFFF);
         addr += 4;
     }
 
-    // Set all interrupt to group 0
+    // Set all interrupt to group 1
     addr = GICD_IGROUPR;
     while (addr < GICD_IGROUPRN) {
-        put32(addr, 0);
-        addr += 4;
-    }
-
-    // Set all interrupt to level sensitive
-    addr = GICD_ICFGR;
-    while (addr < GICD_ICFGRN) {
         put32(addr, 0xFFFFFFFF);
         addr += 4;
     }
 
     // Set all interrupt targets to CPU0
     addr = GICD_ITARGETSR;
-    while (addr < GICD_ITARGETSRN) {
+    while (addr <= GICD_ITARGETSRN) {
         put32(addr, 0);
         addr += 4;
     }
 
-    // Enable group 0 interrupts
-    put32(GICD_CTLR, 1);
+    // Enable group 0 and 1 interrupts
+    put32(GICD_CTLR, 3);
 }
 
 static void init_gicc(void)
@@ -138,13 +131,13 @@ static void init_gicc(void)
     // End all pending interrupts
     value = get32(GICC_IAR) & 0x3FF;
 
-    while ((value != 1023) | (value != 1022)) {
-        put32(GICC_EOIR, get32(GICC_IAR));
+    while (value != 1023) {
+        put32(GICC_EOIR, value);
         value = get32(GICC_IAR) & 0x3FF;
     }
 
-    // Enable group 0 interrupts
-    put32(GICC_CTLR, 1);
+    // Enable group 0 and 1 interrupts
+    put32(GICC_CTLR, 3);
 
 }
 
