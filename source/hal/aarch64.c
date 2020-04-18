@@ -4,10 +4,7 @@
 /* CurrentEL, Current Exception Level
     EL, bits [3:2]
         Current exception level. Possible values of this field are:
-        00 EL0
-        01 EL1
-        10 EL2
-        11 EL3
+        00 EL0 01 EL1 10 EL2 11 EL3
 */
 uint32_t raw_read_current_el(void)
 {
@@ -31,8 +28,7 @@ uint32_t get_current_el(void)
     I, bit [7]: IRQ mask bit.
     F, bit [6]: FIQ mask bit.
     value:
-        0 Exception not masked.
-        1 Exception masked.
+        0 Exception not masked. 1 Exception masked.
 */
 uint32_t raw_read_daif(void)
 {
@@ -94,7 +90,7 @@ uint32_t raw_read_spsr_el3(void)
 {
     uint32_t spsr_el3;
 
-    __asm__ __volatile__("mrs %0, SPSR_EL1\n\t" : "=r"(spsr_el3) :  : "memory");
+    __asm__ __volatile__("mrs %0, SPSR_EL3\n\t" : "=r"(spsr_el3) :  : "memory");
     return spsr_el3;
 }
 

@@ -3,8 +3,8 @@
 
 
 #include <stdint.h>
-#include <hal/address.h>
-#include <sys/utils.h>
+#include "address.h"
+#include "../sys/utils.h"
 
 struct serial_register {
 #define SERIAL_C_I2CEN      BIT(15)

@@ -1,20 +1,15 @@
 #include <hal/auxi.h>
 #include <hal/timer.h>
-#include <hal/gic.h>
+#include <hal/arm_local.h>
 #include <hal/aarch64.h>
 #include <sys/utils.h>
-
-#define TIMER_WAIT      1   /* Assert Timer IRQ after n secs */
-
-static uint32_t cntfrq;     /* System frequency */
+#include <sys/io.h>
 
 void main(void)
 {
-    uint32_t val;
-    uint64_t ticks, current_cnt;
+    uint32_t val, cntfrq, ticks, current_cnt;
 
     uart_init();
-    init_gic();
 
     printf("main\n");
 
@@ -33,7 +28,7 @@ void main(void)
     printf("System Frequency: CNTFRQ_EL0 = %x\n", cntfrq);
 
     // Next timer IRQ is after n sec(s).
-    ticks = TIMER_WAIT * cntfrq;
+    ticks = 10 * cntfrq;
     // Get value of the current timer
     current_cnt = raw_read_cntvct_el0();
     printf("Current counter: CNTVCT_EL0 = %x\n", current_cnt);
@@ -48,14 +43,16 @@ void main(void)
     val = raw_read_cntv_ctl();
     printf("Enable the timer, CNTV_CTL_EL0 = %x\n", val);
 
-    // Enable IRQ
-    set_arm_timer_irq_route();
+    put32(ARM_LOCAL_TIMER_CNTRL0, CNT_V_IRQ_FIQ);
+
     enable_irq();
-    enable_irq_n(GIC_ARM_IRQ_V_TIMER);
+    enable_fiq();
+
     val = raw_read_daif();
     printf("Enable IRQ, DAIF = %x\n", val);
 
     while (1) {
+
 
     }
 }

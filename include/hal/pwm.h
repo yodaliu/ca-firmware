@@ -2,8 +2,8 @@
 #define _PWM_H_
 
 #include <stdint.h>
-#include <hal/address.h>
-#include <sys/utils.h>
+#include "address.h"
+#include "../sys/utils.h"
 
 struct pwm_register {
 #define PWM_CTL_MSEN2 BIT(15)

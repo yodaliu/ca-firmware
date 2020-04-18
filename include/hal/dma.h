@@ -2,16 +2,16 @@
 #define _DMA_H_
 
 #include <stdint.h>
-#include <hal/address.h>
-#include <sys/utils.h>
+#include "address.h"
+#include "../sys/utils.h"
 
-#define DMA_INT_STATUS  (DMA0_BASE + 0xFE0)
+#define DMA_INT_STATUS                  (DMA0_BASE + 0xFE0)
 
-#define DMA_ENABLE_PAGELITE_MSK 0xf
-#define DMA_ENABLE_PAGELITE_SH  28
-#define DMA_ENABLE_PAGE_MSK     0xf
-#define DMA_ENABLE_PAGE_SH      24
-#define DMA_ENABLE      (DMA0_BASE + 0xFF0)
+#define DMA_ENABLE_PAGELITE_MSK         0xf
+#define DMA_ENABLE_PAGELITE_SH          28
+#define DMA_ENABLE_PAGE_MSK             0xf
+#define DMA_ENABLE_PAGE_SH              24
+#define DMA_ENABLE                      (DMA0_BASE + 0xFF0)
 
 struct dma_cb {
 #define DMA_TI_NO_WIDE_BURSTS           BIT(26)

@@ -2,8 +2,7 @@
 #define _SPI_H_
 
 #include <stdint.h>
-#include <hal/address.h>
-#include <sys/utils.h>
+#include "address.h"
 
 struct spi_register {
 #define SPI_CS_LENG_LONG BIT(25)

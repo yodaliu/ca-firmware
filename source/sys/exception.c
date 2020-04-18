@@ -4,7 +4,7 @@
 
 void handle_exception(exception_frame *exc)
 {
-    printf("An exception occur\n");
+
 }
 
 void irq_handle(exception_frame *exc)
@@ -23,4 +23,10 @@ void common_trap_handler(exception_frame *exc)
         printf("AARCH64_EXC_IRQ_SPX\n");
         irq_handle(exc);
     }
+
+    if ((exc->exc_type & 0xff) == AARCH64_EXC_FIQ_SPX) {
+        printf("AARCH64_EXC_FIQ_SPX\n");
+        irq_handle(exc);
+    }
+
 }

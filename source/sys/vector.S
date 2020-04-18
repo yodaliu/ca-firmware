@@ -1,4 +1,4 @@
-#include <hal/aarch64.h>
+#include <sys/exception.h>
 
 .section ".text.boot"
 

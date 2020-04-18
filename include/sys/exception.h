@@ -34,11 +34,11 @@
 /*
  * exception_frame offset definitions
  */
-#define EXC_FRAME_SIZE (288)    /* sizeof(struct _exception_frame) */
+#define EXC_FRAME_SIZE      (288)    /* sizeof(struct _exception_frame) */
 #define EXC_EXC_TYPE_OFFSET (0) /* __asm_offsetof(struct _exception_frame, exc_type) */
-#define EXC_EXC_ESR_OFFSET (8)  /* __asm_offsetof(struct _exception_frame, exc_esr) */
-#define EXC_EXC_SP_OFFSET (16)  /* __asm_offsetof(struct _exception_frame, exc_sp) */
-#define EXC_EXC_ELR_OFFSET (24) /* __asm_offsetof(struct _exception_frame, exc_elr) */
+#define EXC_EXC_ESR_OFFSET  (8)  /* __asm_offsetof(struct _exception_frame, exc_esr) */
+#define EXC_EXC_SP_OFFSET   (16)  /* __asm_offsetof(struct _exception_frame, exc_sp) */
+#define EXC_EXC_ELR_OFFSET  (24) /* __asm_offsetof(struct _exception_frame, exc_elr) */
 #define EXC_EXC_SPSR_OFFSET (32)/* __asm_offsetof(struct _exception_frame, exc_spsr) */
 
 /*
