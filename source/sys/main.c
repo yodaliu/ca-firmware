@@ -1,4 +1,4 @@
-#include <hal/auxi.h>
+#include <hal/uart.h>
 #include <hal/timer.h>
 #include <hal/arm_local.h>
 #include <hal/aarch64.h>
@@ -7,7 +7,8 @@
 
 void main(void)
 {
-    uint32_t val, cntfrq, ticks, current_cnt;
+    uint32_t val, cntfrq, ticks;
+    uint64_t current_cnt;
 
     uart_init();
 
@@ -28,7 +29,7 @@ void main(void)
     printf("System Frequency: CNTFRQ_EL0 = %x\n", cntfrq);
 
     // Next timer IRQ is after n sec(s).
-    ticks = 10 * cntfrq;
+    ticks = 5 * cntfrq;
     // Get value of the current timer
     current_cnt = raw_read_cntvct_el0();
     printf("Current counter: CNTVCT_EL0 = %x\n", current_cnt);
@@ -43,10 +44,9 @@ void main(void)
     val = raw_read_cntv_ctl();
     printf("Enable the timer, CNTV_CTL_EL0 = %x\n", val);
 
-    put32(ARM_LOCAL_TIMER_CNTRL0, CNT_V_IRQ_FIQ);
+    put32(ARM_LOCAL_TIMER_CNTRL0, CNT_V_IRQ);
 
     enable_irq();
-    enable_fiq();
 
     val = raw_read_daif();
     printf("Enable IRQ, DAIF = %x\n", val);

@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <sys/utils.h>
-#include <hal/auxi.h>
+#include <hal/uart.h>
 
 void delay(uint64_t period)
 {

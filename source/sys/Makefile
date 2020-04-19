@@ -3,7 +3,7 @@ include $(MAKERULES)
 
 .PHONY: all clean
 
-OBJS = startup.o vector.o exception.o io.o utils.o main.o
+OBJS = startup.o vector.o exception.o isr.o io.o utils.o main.o
 
 all:    $(OBJS) COPY_OBJS
 

@@ -23,4 +23,20 @@
 #define UART0_ITOP      (UART0_BASE + 0x88)
 #define UART0_TDR       (UART0_BASE + 0x8C)
 
+void uart_init(
+    void
+);
+
+void uart_send(
+    char c
+);
+
+char uart_getc(
+    void
+);
+
+void uart_send_string(
+    char *str
+);
+
 #endif //#ifndef _UART_H_

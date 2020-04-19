@@ -13,6 +13,16 @@
 #define DMA_ENABLE_PAGE_SH              24
 #define DMA_ENABLE                      (DMA0_BASE + 0xFF0)
 
+enum dma_ch_id {
+    DMA_CH0 = 0,
+    DMA_CH1 = 1,
+    DMA_CH2,
+    DMA_CH3,
+    DMA_CH4,
+    DMA_CH5,
+    DMA_CH6
+};
+
 struct dma_cb {
 #define DMA_TI_NO_WIDE_BURSTS           BIT(26)
 #define DMA_TI_WAITS_MSK                0x1f
@@ -46,6 +56,8 @@ struct dma_cb {
 #define DMA_STRIDE_S_STRIDE_SH          0
     uint32_t STRIDE;
     uint32_t NEXTCONBK;
+    uint32_t RSVD0;
+    uint32_t RSVD1;
 };
 
 struct dma_register {
@@ -67,7 +79,12 @@ struct dma_register {
 #define DMA_ACTIVE                            BIT(0)
     uint32_t CS;
     uint32_t CONBLK_AD;
-    struct dma_cb CB;
+    uint32_t TI;
+    uint32_t SOURCE_AD;
+    uint32_t DEST_AD;
+    uint32_t TXFR_LEN;
+    uint32_t STRIDE;
+    uint32_t NEXTCONBK;
 #define DMA_DEBUG_LITE                        BIT(28)
 #define DMA_DEBUG_VERSION_MSK                 0x7
 #define DMA_DEBUG_VERSION_SH                  25
@@ -81,6 +98,13 @@ struct dma_register {
 #define DMA_DEBUG_FIFO_ERROR                  BIT(1)
 #define DMA_DEBUG_READ_LAST_NOT_SET_ERROR     BIT(0)
     uint32_t DEBUG;
+};
+
+enum dma_lite_ch_id {
+    DMA_CH7 = 0,
+    DMA_CH8 = 1,
+    DMA_CH9,
+    DMA_CH10,
 };
 
 struct dma_lite_cb {
@@ -106,12 +130,19 @@ struct dma_lite_cb {
     uint32_t TXFR_LEN;
     uint32_t RSVD;
     uint32_t NEXTCONBK;
+    uint32_t RSVD0;
+    uint32_t RSVD1;
 };
 
 struct dma_lite_register {
     uint32_t CS;
     uint32_t CONBLK_AD;
-    struct dma_lite_cb CB;
+    uint32_t TI;
+    uint32_t SOURCE_AD;
+    uint32_t DEST_AD;
+    uint32_t TXFR_LEN;
+    uint32_t RSVD;
+    uint32_t NEXTCONBK;
 #define DMA_LITE_DEBUG_LITE                        BIT(28)
 #define DMA_LITE_DEBUG_VERSION_MSK                 0x7
 #define DMA_LITE_DEBUG_VERSION_SH                  25
@@ -125,6 +156,13 @@ struct dma_lite_register {
 #define DMA_LITE_DEBUG_FIFO_ERROR                  BIT(1)
 #define DMA_LITE_DEBUG_READ_LAST_NOT_SET_ERROR     BIT(0)
     uint32_t DEBUG;
+};
+
+enum dma4_ch_id {
+    DMA_CH11 = 0,
+    DMA_CH12 = 1,
+    DMA_CH13,
+    DMA_CH14,
 };
 
 struct dma4_cb {
@@ -171,6 +209,7 @@ struct dma4_cb {
 #define DMA4_LEN_XLENGTH_SH             0
     uint32_t LEN;
     uint32_t NEXT_CB;
+    uint32_t RSVD;
 };
 
 struct dma4_register {
@@ -213,7 +252,13 @@ struct dma4_register {
 #define DMA4_FIFO_ERROR                     BIT(1)
 #define DMA4_WRITE_ERROR                    BIT(0)
     uint32_t DEBUG;
-    struct dma4_cb CB;
+    uint32_t TI;
+    uint32_t SRC;
+    uint32_t SRCI;
+    uint32_t DEST;
+    uint32_t DESTI;
+    uint32_t LEN;
+    uint32_t NEXT_CB;
 #define DMA4_DEBUG2_OUTSTANDING_READS_MSK  0xff
 #define DMA4_DEBUG2_OUTSTANDING_READS_SH   16
 #define DMA4_DEBUG2_OUTSTANDING_WRITES_MSK 0xff
