@@ -1,4 +1,2 @@
 kernel_old=1
 disable_commandline_tags=1
-core_freq=500
-core_freq_min=500
