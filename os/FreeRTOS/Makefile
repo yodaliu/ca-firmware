@@ -1,7 +1,7 @@
 
 include $(MAKERULES)
 
-SUBDIRS = portable/MemMang portable/GCC/RaspberryPi
+SUBDIRS = portable/MemMang portable/GCC/rpi4b
 BUILDDIRS = $(SUBDIRS:%=build-%)
 
 OBJS = event_groups.o list.o queue.o stream_buffer.o tasks.o timers.o

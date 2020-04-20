@@ -26,7 +26,7 @@ MAKERULES	= $(TOPDIR)/Rules.make
 BUILDDIR	= $(TOPDIR)/build
 OBJDIR		= $(BUILDDIR)/objs
 
-INC = -I$(TOPDIR)/include -I$(TOPDIR)/FreeRTOS/include -I$(TOPDIR)/FreeRTOS/portable/GCC/RaspberryPi
+INC = -I$(TOPDIR)/include -I$(TOPDIR)/os/FreeRTOS/include -I$(TOPDIR)/os/FreeRTOS/portable/GCC/rpi4b
 CFLAGS = -Wall -O2 -nostdlib -nostartfiles -ffreestanding -mgeneral-regs-only -mcpu=cortex-a72 $(INC)
 AFLAGS = -D__ASSEMBLY__ $(CFLAGS)
 
@@ -39,7 +39,7 @@ build_folder: clean
 	@if [ -d $(BUILDDIR) ]; then echo "$(BUILDDIR) exist"; else $(MKDIR) -p $(BUILDDIR); fi
 	@if [ -d $(OBJDIR) ]; then echo "$(OBJDIR) exist"; else $(MKDIR) $(OBJDIR); fi
 
-SUBDIRS = source
+SUBDIRS = os source
 BUILDDIRS = $(SUBDIRS:%=build-%)
 $(BUILDDIRS):
 	$(HIDE) $(MAKE) -C $(@:build-%=%) all
