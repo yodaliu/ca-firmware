@@ -24,6 +24,8 @@ void irq_handle(exception_frame *exc)
 void fiq_handle(exception_frame *exc)
 {
     printf("FIQ Handler\n");
+
+    virtual_timer_isr();
 }
 
 void common_trap_handler(exception_frame *exc)
