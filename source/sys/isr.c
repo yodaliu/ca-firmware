@@ -1,7 +1,5 @@
-#include <hal/uart.h>
-#include <hal/timer.h>
+#include <stdint.h>
 #include <hal/aarch64.h>
-#include <sys/utils.h>
 #include <sys/io.h>
 
 void virtual_timer_isr()

@@ -63,35 +63,35 @@ enum GPIO_MODE {
 };
 
 void set_gpio_mode(
-	uint32_t pin,
-	enum GPIO_MODE mode
+    uint32_t pin,
+    enum GPIO_MODE mode
 );
 
 void set_gpio_level(
-	uint32_t pin,
-	uint32_t value
+    uint32_t pin,
+    uint32_t value
 );
 
 uint32_t get_gpio_level(
-	uint32_t pin
+    uint32_t pin
 );
 
 void enable_gpio_detect(
-	uint32_t pin,
-	enum DETECT_MODE type
+    uint32_t pin,
+    enum DETECT_MODE type
 );
 
 void disable_gpio_detect(
-	uint32_t pin,
-	enum DETECT_MODE type
+    uint32_t pin,
+    enum DETECT_MODE type
 );
 
 uint32_t get_gpio_detect(
-	uint32_t pin
+    uint32_t pin
 );
 
 void clear_gpio_detect(
-	uint32_t pin
+    uint32_t pin
 );
 
 #endif //#ifndef _GPIO_H_

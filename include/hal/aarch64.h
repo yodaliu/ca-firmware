@@ -1,6 +1,7 @@
 #ifndef _AARCH64_H_
 #define _AARCH64_H_
 
+#include <stdint.h>
 #include "../sys/utils.h"
 
 /* CurrentEL, Current Exception Level */

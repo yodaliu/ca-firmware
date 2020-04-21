@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include <hal/timer.h>
-#include <hal/aarch64.h>
 #include <hal/armc.h>
 #include <sys/io.h>
 

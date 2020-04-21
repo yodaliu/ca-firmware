@@ -1,6 +1,7 @@
 #ifndef _ARMC_H_
 #define _ARMC_H_
 
+#include <stdint.h>
 #include "address.h"
 #include "../sys/utils.h"
 

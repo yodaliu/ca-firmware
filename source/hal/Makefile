@@ -3,7 +3,7 @@ include $(MAKERULES)
 
 .PHONY: all clean
 
-OBJS = aarch64.o auxi.o gpio.o timer.o mbox.o uart.o
+OBJS = aarch64.o auxi.o gicv2.o gpio.o mbox.o timer.o uart.o
 
 all:    $(OBJS) COPY_OBJS
 

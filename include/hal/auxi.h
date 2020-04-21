@@ -1,10 +1,11 @@
 #ifndef _AUXI_H_
 #define _AUXI_H_
 
+#include <stdint.h>
 #include "address.h"
 
-#define BAUD_RATE 115200
-#define SYSTEM_FREQ_CLOCK 500000000
+#define BAUD_RATE           115200
+#define SYSTEM_FREQ_CLOCK   500000000
 
 #define AUX_IRQ             (AUX_BASE+0x00)
 #define AUX_ENABLES         (AUX_BASE+0x04)

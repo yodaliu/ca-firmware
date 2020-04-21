@@ -1,7 +1,8 @@
 
 #include <sys/exception.h>
-#include <sys/utils.h>
 #include <sys/isr.h>
+#include <sys/io.h>
+#include <hal/gicv2.h>
 
 void handle_exception(exception_frame *exc)
 {
@@ -15,17 +16,36 @@ void handle_serror(exception_frame *exc)
 
 void irq_handle(exception_frame *exc)
 {
+    uint16_t id;
+
     printf("IRQ Handler\n");
 
-    virtual_timer_isr();
+    id = get32(GICC_IAR) & 0x3FF;
+    printf("INT ID: %x\n", id);
+
+    clear_intrpt_pending(id);
+    if (id == GIC_ARM_IRQ_V_TIMER)
+        virtual_timer_isr();
+
+    put32(GICC_EOIR, id);
 
 }
 
 void fiq_handle(exception_frame *exc)
 {
+    uint16_t id;
+
     printf("FIQ Handler\n");
 
-    virtual_timer_isr();
+    id = get32(GICC_IAR) & 0x3FF;
+    printf("INT ID: %x\n", id);
+
+    clear_intrpt_pending(id);
+    if (id == GIC_ARM_IRQ_V_TIMER)
+        virtual_timer_isr();
+
+    put32(GICC_EOIR, id);
+
 }
 
 void common_trap_handler(exception_frame *exc)

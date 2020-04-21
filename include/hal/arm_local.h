@@ -1,6 +1,7 @@
 #ifndef _ARM_LOCAL_H_
 #define _ARM_LOCAL_H_
 
+#include <stdint.h>
 #include "address.h"
 #include "../sys/utils.h"
 
