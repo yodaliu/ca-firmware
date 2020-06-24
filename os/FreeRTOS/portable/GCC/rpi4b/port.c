@@ -31,6 +31,9 @@
 /* Scheduler includes. */
 #include "FreeRTOS.h"
 #include "task.h"
+#include "hal/timer.h"
+#include "hal/aarch64.h"
+#include "hal/gicv2.h"
 
 #ifndef configINTERRUPT_CONTROLLER_BASE_ADDRESS
 #error configINTERRUPT_CONTROLLER_BASE_ADDRESS must be defined.  See http://www.freertos.org/Using-FreeRTOS-on-Cortex-A-Embedded-Processors.html
@@ -102,7 +105,7 @@ context. */
 
 /* Used by portASSERT_IF_INTERRUPT_PRIORITY_INVALID() when ensuring the binary
 point is zero. */
-#define portBINARY_POINT_BITS           ( ( uint8_t ) 0x03 )
+#define portBINARY_POINT_BITS           ( ( uint8_t ) 0x07 )
 
 /* Masks all bits in the APSR other than the mode bits. */
 #define portAPSR_MODE_BITS_MASK         ( 0x0C )
@@ -493,19 +496,58 @@ void vPortValidateInterruptPriority(void)
 /*-----------------------------------------------------------*/
 void vConfigureTickInterrupt(void)
 {
+    uint32_t cntfrq, ticks;
+    uint64_t current_cnt;
 
+    // Disable the timer
+    disable_cntv();
+    cntfrq = raw_read_cntfrq_el0();
+
+    // Next timer IRQ is after n sec(s).
+    ticks = cntfrq / configTICK_RATE_HZ;
+    // Get value of the current timer
+    current_cnt = raw_read_cntvct_el0();
+
+    // Set the interrupt in Current Time + TimerTick
+    raw_write_cntv_cval_el0(current_cnt + ticks);
+
+    // Enable the timer
+    enable_cntv();
+
+    //put32(ARM_LOCAL_TIMER_CNTRL0, CNT_V_IRQ);
+    enable_intrpt(GIC_ARM_IRQ_V_TIMER);
 }
 
 /*-----------------------------------------------------------*/
 void vClearTickInterrupt(void)
 {
+    uint32_t cntfrq, ticks;
+    uint64_t current_cnt;
 
+    disable_cntv();
+    cntfrq = raw_read_cntfrq_el0();
+
+    ticks = cntfrq / configTICK_RATE_HZ;
+    // Get value of the current timer
+    current_cnt = raw_read_cntvct_el0();
+    raw_write_cntv_cval_el0(current_cnt + ticks);
+
+    enable_cntv();
 }
 
 /*-----------------------------------------------------------*/
-void vApplicationIRQHandler(void)
+void vApplicationIRQHandler(uint32_t gicc_iar)
 {
+    uint16_t id;
 
+    printf("IRQ Handler\n");
+
+    id = gicc_iar & 0x3FF;
+    printf("INT ID: %x\n", id);
+
+    clear_intrpt_pending(id);
+    if (id == GIC_ARM_IRQ_V_TIMER)
+        FreeRTOS_Tick_Handler();
 }
 
 /*-----------------------------------------------------------*/

@@ -87,6 +87,7 @@ _start:
 	mov x0, #CPUECTLR_EL1_SMPEN
 	msr CPUECTLR_EL1, x0
 
+	msr SPSEL, #1
 	adr	x0, vectors
 	msr	vbar_el3, x0
 	isb

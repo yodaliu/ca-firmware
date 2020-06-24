@@ -53,11 +53,9 @@
  */
 #define configMAX_API_CALL_INTERRUPT_PRIORITY   18
 
-#define configCPU_CLOCK_HZ                      100000000UL
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
 #define configUSE_TICKLESS_IDLE                 0
 #define configTICK_RATE_HZ                      ( ( TickType_t ) 1000 )
-#define configPERIPHERAL_CLOCK_HZ               ( 33333000UL )
 #define configUSE_PREEMPTION                    1
 #define configUSE_IDLE_HOOK                     1
 #define configUSE_TICK_HOOK                     1
@@ -159,9 +157,9 @@ void vClearTickInterrupt(void);
 
 /* The following constant describe the hardware, and are correct for the
 Zynq MPU. */
-#define configINTERRUPT_CONTROLLER_BASE_ADDRESS             0xFF841000
+#define configINTERRUPT_CONTROLLER_BASE_ADDRESS             0xff841000
 #define configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET     0x1000
-#define configUNIQUE_INTERRUPT_PRIORITIES                   32
+#define configUNIQUE_INTERRUPT_PRIORITIES                   256
 
 #define fabs( x ) __builtin_fabs( x )
 

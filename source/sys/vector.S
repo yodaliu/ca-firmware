@@ -193,10 +193,11 @@ _curr_el_spx_sync:
 
 	.align 2
 _curr_el_spx_irq:
-	build_trapframe AARCH64_EXC_IRQ_SPX
-	store_nested_sp
-	call_common_trap_handler
-	restore_trapframe
+	//build_trapframe AARCH64_EXC_IRQ_SPX
+	//store_nested_sp
+	//call_common_trap_handler
+	//restore_trapframe
+	FreeRTOS_IRQ_Handler
 
 	.align 2
 _curr_el_spx_fiq:
@@ -207,11 +208,11 @@ _curr_el_spx_fiq:
 
 	.align 2
 _curr_el_spx_serror:
-	build_trapframe AARCH64_EXC_SERR_SPX
-	store_nested_sp
-	call_common_trap_handler
-	restore_trapframe
-
+	//build_trapframe AARCH64_EXC_SERR_SPX
+	//store_nested_sp
+	//call_common_trap_handler
+	//restore_trapframe
+	FreeRTOS_SWI_Handler
 
 	.align 2
 _lower_el_aarch64_sync:

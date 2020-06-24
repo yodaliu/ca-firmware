@@ -120,7 +120,7 @@ void init_gicc()
 
     put32(GICC_CTLR, 0);
     put32(GICC_PMR, 0xFF);
-    put32(GICC_BPR, 0x7);
+    put32(GICC_BPR, 0);
     put32(GICC_CTLR, val);
 
 }
